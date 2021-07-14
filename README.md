@@ -1,4 +1,4 @@
-# StatsPro<img src="StatsProhome.png" align="right" height="140" width="164"/>
+# StatsPro<img src="StatsProhome.png" align="right" height="140" width="145"/>
 StatsPro: systematic integration and evaluation of statistical approaches for detecting differential expression in label-free quantitative proteomics
 
 ## Brief Description
@@ -6,6 +6,6 @@ StatsPro: systematic integration and evaluation of statistical approaches for de
 
 ## Table of contents graphic
 
-<img src="StatsPro_TOC.png" align="right" height="800" width="429"/>
+<img src="StatsPro_TOC.png" align="right" height="429" width="800"/>
 
 
