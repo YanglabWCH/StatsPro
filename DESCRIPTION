@@ -1,6 +1,6 @@
 Package: StatsPro
 Type: Package
-Title: StatsPro: systematic integration of statistical methods for label-free quantitative proteomics
+Title: StatsPro: systematic integration and evaluation of statistical approaches for detecting differential expression in label-free quantitative proteomics
 Version: 0.1.0
 Author: Shisheng Wang
 Maintainer: Shisheng Wang <wssdandan2009@outlook.com>
