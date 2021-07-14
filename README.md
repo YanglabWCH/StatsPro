@@ -15,11 +15,14 @@ A detailed introduction of this software can be found in [StatsPro_Manual.pdf](h
 This tool is developed with R, so if you want to run it locally, you may do some preparatory work:  
 **1. Install R.** You can download R from here: [https://www.r-project.org/](https://www.r-project.org/).  
 **2. Install RStudio.** (Recommendatory but not necessary). You can download RStudio from here: [https://www.rstudio.com/](https://www.rstudio.com/).  
-**3. Check packages.** After installing R and RStudio, you should check whether you have installed these packages (shiny, shinyjs, shinyBS, shinyWidgets, gdata, ggplot2, ggsci, DT, tidyverse, ggExtra, cowplot, readxl, writexl, data.table, Amelia, impute, coin, exactRankTests, limma, samr, RankProd, ROTS, msqrobsum, MSnbase, DEqMS, plgem, effsize, patchwork, survcomp, metaseqR). You may run the codes below to check them:  
+**3. Check packages.** After installing R and RStudio, you should check whether you have installed these packages (shiny, shinyjs, shinyBS, rlang, htmltools, shinyWidgets, gdata, ggplot2, ggsci, DT, tidyverse, ggExtra, cowplot, readxl, writexl, data.table, Amelia, impute, coin, exactRankTests, genefilter, geneplotter, limma, DESeq, samr, RankProd, ROTS, MSnbase, DEqMS, plgem, effsize, patchwork, parallelly, listenv, globals, future, future.apply, survcomp, msqrobsum, metaseqR). You may run the codes below to check them:
 
 ```r
 if(!require(pacman)) install.packages("pacman")
-pacman::p_load(shiny, shinyjs, shinyBS, shinyWidgets, gdata, ggplot2, ggsci, DT, tidyverse, ggExtra, cowplot, readxl, writexl, data.table, Amelia, impute, coin, exactRankTests, limma, samr, RankProd, ROTS, msqrobsum, MSnbase, DEqMS, plgem, effsize, patchwork, survcomp, metaseqR)
+pacman::p_load(shiny, shinyjs, shinyBS, rlang, htmltools, shinyWidgets, gdata, ggplot2, ggsci, DT, tidyverse, ggExtra, cowplot, readxl, writexl, data.table, Amelia, impute, coin, exactRankTests, genefilter, geneplotter, limma, samr, RankProd, ROTS, MSnbase, DEqMS, plgem, effsize, patchwork, parallelly, listenv, globals, future, future.apply, survcomp)
+install.packages("https://www.bioconductor.org/packages//2.10/bioc/src/contrib/DESeq_1.8.3.tar.gz", repos = NULL, type = "source")
+devtools::install_github("statOmics/MSqRobSum")
+pacman::p_load(metaseqR)
 ```
 
 ## Run it locally
