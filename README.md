@@ -32,7 +32,7 @@ StatsPro_app()
 
 Then NAguideR will be started as below:
 
-<img src="homepage.png" align="center" height="672" width="500"/>
+<img src="homepage.png" align="center" height="612" width="500"/>
 
 
 Enjoy yourself^_^
