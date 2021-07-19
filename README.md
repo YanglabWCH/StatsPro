@@ -4,6 +4,8 @@ StatsPro: systematic integration and evaluation of statistical approaches for de
 ## Brief Description
 **<font size='5'> StatsPro </font>** integrates 12 common statistical methods and 6 P-value combination strategies, and then provides three evaluation criteria to assess the performance of each method or strategy (described in Software Manual). This tool is expected to help scientists detect the differentially expressed proteins and realize the ability of different statistical methods in a systematic view. Here we present the detailed introduction and operation of StatsPro, by which users can follow to analyze their own data freely and conveniently. The online version can be accessed from here: [https://www.omicsolution.com/wukong/StatsPro/](https://www.omicsolution.com/wukong/StatsPro/).
 
+**<font size='6'> Please Note: </font>** If the online version does not work, which means you cannot open the link above, that is probably because our server is down and we will fix it very soon. We also recommend users to install this tool locally.
+
 ## Software Manual
 A detailed introduction of this software can be found in [StatsPro_Manual.pdf](https://github.com/YanglabWCH/StatsPro/blob/main/StatsPro_Manual.pdf) file.
 
