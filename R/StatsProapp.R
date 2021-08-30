@@ -1,4 +1,4 @@
-#' StatsPro: systematic integration of statistical methods for label-free quantitative proteomics.
+#' StatsPro: systematic integration and evaluation of statistical approaches for detecting differential expression in label-free quantitative proteomics.
 #'
 #'
 #' @docType package
