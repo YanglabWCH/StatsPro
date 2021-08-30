@@ -443,6 +443,30 @@ ui<-renderUI(
                       footer = a(href="https://en.wikipedia.org/wiki/Analysis_of_variance",h6("Analysis of variance from Wikipedia"),target="_blank")
                     )
                   )
+                ),
+                fixedRow(
+                  column(
+                    6,
+                    panel(
+                      "",
+                      checkboxInput("limmaif", "Using Limma method or not?",TRUE),
+                      heading = "Method 3: Linear Models for Microarray Data (limma)",
+                      status = "success",
+                      footer = a(href="https://doi.org/10.1093/nar/gkv007",h6("DOI: 10.1093/nar/gkv007"),target="_blank")
+                    )
+                  ),
+                  column(
+                    6,
+                    panel(
+                      "",
+                      checkboxInput("samif", "Using sam method or not?",TRUE),
+                      tags$hr(style="border-color: grey80;"),
+                      selectInput("samtype",h5("M7.1 Problem type:"),choices = c("Two class unpaired","Multiclass","Two class paired")),
+                      heading = "Method 4: Significance analysis of microarrays (sam)",
+                      status = "success",
+                      footer = a(href="https://doi.org/10.1073/pnas.091062498",h6("DOI: 10.1073/pnas.091062498"),target="_blank")
+                    )
+                  )
                 )
               )
             ),
@@ -460,7 +484,7 @@ ui<-renderUI(
                       checkboxInput("wiltestif", "Using Wilcoxon rank sum test or not?",TRUE),
                       tags$hr(style="border-color: grey80;"),
                       checkboxInput("wiltestpairedif", "M1.1 Paired or not?",FALSE),
-                      heading = "Method 3: Wilcoxon rank sum test (wiltest)",
+                      heading = "Method 5: Wilcoxon rank sum test (wiltest)",
                       status = "success",
                       footer = a(href="https://www.tandfonline.com/doi/abs/10.1080/01621459.1972.10481279",h6("DOI: 10.1080/01621459.1972.10481279"),target="_blank")
                     )
@@ -470,7 +494,7 @@ ui<-renderUI(
                     panel(
                       "",
                       checkboxInput("kwtestif", "Using Kruskal-Wallis Rank Sum Test or not?",TRUE),
-                      heading = "Method 4: Kruskal-Wallis Rank Sum Test (kwtest)",
+                      heading = "Method 6: Kruskal-Wallis Rank Sum Test (kwtest)",
                       status = "success",
                       footer = a(href="https://onlinelibrary.wiley.com/doi/book/10.1002/9781119196037",h6("DOI: 10.1002/9781119196037"),target="_blank")
                     )
@@ -480,7 +504,7 @@ ui<-renderUI(
                     panel(
                       "",
                       checkboxInput("permif", "Using Permutation test or not?",TRUE),
-                      heading = "Method 5: Permutation test (perm)",
+                      heading = "Method 7: Permutation test (perm)",
                       status = "success",
                       footer = a(href="https://cran.r-project.org/web/packages/exactRankTests/index.html",h6("Package: exactRankTests"),target="_blank")
                     )
@@ -491,36 +515,12 @@ ui<-renderUI(
                     4,
                     panel(
                       "",
-                      checkboxInput("limmaif", "Using Limma method or not?",TRUE),
-                      heading = "Method 6: Linear Models for Microarray Data (limma)",
-                      status = "success",
-                      footer = a(href="https://doi.org/10.1093/nar/gkv007",h6("DOI: 10.1093/nar/gkv007"),target="_blank")
-                    )
-                  ),
-                  column(
-                    4,
-                    panel(
-                      "",
-                      checkboxInput("samif", "Using sam method or not?",TRUE),
-                      tags$hr(style="border-color: grey80;"),
-                      selectInput("samtype",h5("M7.1 Problem type:"),choices = c("Two class unpaired","Multiclass","Two class paired")),
-                      heading = "Method 7: Significance analysis of microarrays (sam)",
-                      status = "success",
-                      footer = a(href="https://doi.org/10.1073/pnas.091062498",h6("DOI: 10.1073/pnas.091062498"),target="_blank")
-                    )
-                  ),
-                  column(
-                    4,
-                    panel(
-                      "",
                       checkboxInput("rankproif", "Using Rank Product method or not?",TRUE),
                       heading = "Method 8: Rank Product analysis (rankpro)",
                       status = "success",
                       footer = a(href="https://doi.org/10.1016/j.febslet.2004.07.055",h6("DOI: 10.1016/j.febslet.2004.07.055"),target="_blank")
                     )
-                  )
-                ),
-                fixedRow(
+                  ),
                   column(
                     4,
                     panel(
@@ -540,7 +540,9 @@ ui<-renderUI(
                       status = "success",
                       footer = a(href="https://doi.org/10.1074/mcp.RA119.001624",h6("DOI: 10.1074/mcp.RA119.001624"),target="_blank")
                     )
-                  ),
+                  )
+                ),
+                fixedRow(
                   column(
                     4,
                     panel(
@@ -550,9 +552,7 @@ ui<-renderUI(
                       status = "success",
                       footer = a(href="https://doi.org/10.1074/mcp.TIR119.001646",h6("DOI: 10.1074/mcp.TIR119.001646"),target="_blank")
                     )
-                  )
-                ),
-                fixedRow(
+                  ),
                   column(
                     4,
                     panel(
@@ -1229,11 +1229,11 @@ server<-shinyServer(function(input, output, session){
     namethods<-vector()
     if(input$ttestif) namethods[1]<-"ttest"
     if(input$aovif) namethods[2]<-"aov"
-    if(input$wiltestif) namethods[3]<-"wiltest"
-    if(input$kwtestif) namethods[4]<-"kwtest"
-    if(input$permif) namethods[5]<-"perm"
-    if(input$limmaif) namethods[6]<-"limma"
-    if(input$samif) namethods[7]<-"sam"
+    if(input$wiltestif) namethods[3]<-"limma"
+    if(input$kwtestif) namethods[4]<-"sam"
+    if(input$permif) namethods[5]<-"wiltest"
+    if(input$limmaif) namethods[6]<-"kwtest"
+    if(input$samif) namethods[7]<-"perm"
     if(input$rankproif) namethods[8]<-"rankpro"
     if(input$rotsif) namethods[9]<-"rots"
     if(input$msqrobsumif) namethods[10]<-"msqrobsum"
