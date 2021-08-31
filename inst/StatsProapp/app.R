@@ -734,7 +734,7 @@ server<-shinyServer(function(input, output, session){
           div(style="text-align:center;margin-top:20px;font-size:150%;color:#E64B35FF",
               HTML("<em>Welcome to StatsPro</em>")),
           div(style="width:fit-content;width:-webkit-fit-content;width:-moz-fit-content;font-size:120%;margin-top:10px",
-              HTML("<b>StatsPro</b> integrates 12 common statistical methods and 6 P-value combination strategies, and then provides three evaluation criteria to assess the performance of each method or strategy. This tool is expected to help scientists detect the differentially expressed proteins and realize the ability of different statistical methods in a systematic view.")),
+              HTML("<b>StatsPro</b> is an open-source software, which integrates 12 common statistical methods and 6 P-value combination strategies, and then provides three evaluation criteria to assess the performance of each method or strategy. This tool is expected to help scientists detect the differentially expressed proteins and realize the ability of different statistical methods in a systematic view. The source codes can be accessed at: <a href='https://github.com/YanglabWCH/StatsPro' target='_blank'>https://github.com/YanglabWCH/StatsPro</a>.")),
           div(style="text-align:center;margin-top: 50px",
               a(href='#',
                 img(src='StatsProhome.png',height=imgwidth))),
