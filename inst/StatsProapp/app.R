@@ -734,7 +734,7 @@ server<-shinyServer(function(input, output, session){
           div(style="text-align:center;margin-top:20px;font-size:150%;color:#E64B35FF",
               HTML("<em>Welcome to StatsPro</em>")),
           div(style="width:fit-content;width:-webkit-fit-content;width:-moz-fit-content;font-size:120%;margin-top:10px",
-              HTML("<b>StatsPro</b> is an open-source software, which integrates 12 common statistical methods and 6 P-value combination strategies, and then provides three evaluation criteria to assess the performance of each method or strategy. This tool is expected to help scientists detect the differentially expressed proteins and realize the ability of different statistical methods in a systematic view. The source codes can be accessed at: <a href='https://github.com/YanglabWCH/StatsPro' target='_blank'>https://github.com/YanglabWCH/StatsPro</a>.")),
+              HTML("<b><i>StatsPro</i></b> is an open-source software, which integrates 12 common statistical methods and 6 P-value combination strategies, and then provides three evaluation criteria to assess the performance of each method or strategy. This tool is expected to help scientists detect the differentially expressed proteins and realize the ability of different statistical methods in a systematic view. The source codes and detailed manual can be accessed at our <a href='https://github.com/YanglabWCH/StatsPro' target='_blank'>GitHub</a>. (<b>Please Note:</b> If this online version does not work, which means you cannot open the software link, it is probably because our server is down and we will fix it very soon. Or, please try to install this tool and run it locally.)")),
           div(style="text-align:center;margin-top: 50px",
               a(href='#',
                 img(src='StatsProhome.png',height=imgwidth))),
@@ -932,9 +932,10 @@ server<-shinyServer(function(input, output, session){
       if(input$datatypex==1){
         dataread1<-dataread[,-c(1,2)]
         dataread2<-dataread[,c(1,2)]
-        rowpaste<-apply(dataread2,1,function(x){
-          paste0(x,collapse = "_")
-        })
+        #rowpaste<-apply(dataread2,1,function(x){
+        #  paste0(x,collapse = "_")
+        #})
+        rowpaste<-paste0(dataread2[[1]],"_",dataread2[[2]])
         dataread1x<-dataread1[!duplicated(rowpaste),]
         rownames(dataread1x)<-rowpaste[!duplicated(rowpaste)]
       }
@@ -950,9 +951,10 @@ server<-shinyServer(function(input, output, session){
         datamaxqpro3<-datamaxqpro2[!duplicated(datamaxqpro2$`Protein IDs`),]
         datamaxqpro4<-datamaxqpro3[,-c(1,2)]
         dataread2<-datamaxqpro3[,c(1,2)]
-        rowpaste<-apply(dataread2,1,function(x){
-          paste0(x,collapse = "_")
-        })
+        #rowpaste<-apply(dataread2,1,function(x){
+        #  paste0(x,collapse = "_")
+        #})
+        rowpaste<-paste0(dataread2[[1]],"_",dataread2[[2]])
         rownames(datamaxqpro4)<-rowpaste#datamaxqpro3[,1]
         pro0index<-apply(datamaxqpro4,1,function(x) sum(x)==0)
         dataread1x<-datamaxqpro4[!pro0index,]
@@ -968,9 +970,10 @@ server<-shinyServer(function(input, output, session){
         datamaxqpro3<-datamaxqpro2[!duplicated(datamaxqpro2$`Protein IDs`),]
         datamaxqpro4<-as.data.frame(datamaxqpro3[,-c(1,2)])
         dataread2<-datamaxqpro3[,c(1,2)]
-        rowpaste<-apply(dataread2,1,function(x){
-          paste0(x,collapse = "_")
-        })
+        #rowpaste<-apply(dataread2,1,function(x){
+        #  paste0(x,collapse = "_")
+        #})
+        rowpaste<-paste0(dataread2[[1]],"_",dataread2[[2]])
         rownames(datamaxqpro4)<-rowpaste
         dataread1x<-datamaxqpro4
       }
@@ -991,9 +994,10 @@ server<-shinyServer(function(input, output, session){
         datamaxqpro3<-datamaxqpro2[!duplicated(datamaxqpro2$`Protein IDs`),]
         datamaxqpro4<-datamaxqpro3[,-c(1,2)]
         dataread2<-datamaxqpro3[,c(1,2)]
-        rowpaste<-apply(dataread2,1,function(x){
-          paste0(x,collapse = "_")
-        })
+        #rowpaste<-apply(dataread2,1,function(x){
+        #  paste0(x,collapse = "_")
+        #})
+        rowpaste<-paste0(dataread2[[1]],"_",dataread2[[2]])
         rownames(datamaxqpro4)<-rowpaste
         dataread1x<-datamaxqpro4
       }
@@ -1425,9 +1429,9 @@ server<-shinyServer(function(input, output, session){
   }
   pvalueresdfout<-reactive({
     library(effsize)
-    namethodsoutx<-tolower(na.omit(namethodsout()))
+    namethodsoutx<<-tolower(na.omit(namethodsout()))
     namethodsoutx1<-c(namethodsoutx,"Finish")
-    statsdatadfx<-knnimputeresout()
+    statsdatadfx<<-knnimputeresout()
     if(input$loaddatatype==1){
       classnames<-strsplit(input$grnames,";")[[1]]
       grnum1<-as.numeric(strsplit(input$grnums,";")[[1]][1])
@@ -1443,7 +1447,9 @@ server<-shinyServer(function(input, output, session){
         classnamesnum<-as.numeric(strsplit(strsplit(input$examgrnums,";")[[1]][2],"-")[[1]])
       }
     }
-    grinfo<-rep(classnames,times=classnamesnum)
+    classnames<<-classnames
+    classnamesnum<<-classnamesnum
+    grinfo<<-rep(classnames,times=classnamesnum)
     cohendd<-apply(statsdatadfx,1,function(x){
       x1<-cohen.d(as.numeric(x)~grinfo,pooled=FALSE)
       x1$estimate
