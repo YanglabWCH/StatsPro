@@ -822,9 +822,10 @@ server<-shinyServer(function(input, output, session){
                            row.names = rownametf,stringsAsFactors = F)
         dataread1<-dataread[,-c(1,2)]
         dataread2<-dataread[,c(1,2)]
-        rowpaste<-apply(dataread2,1,function(x){
-          paste0(x,collapse = "_")
-        })
+        #rowpaste<-apply(dataread2,1,function(x){
+        #  paste0(x,collapse = "_")
+        #})
+        rowpaste<-paste0(dataread2[[1]],"_",dataread2[[2]])
         dataread1x<-dataread1[!duplicated(rowpaste),]
         rownames(dataread1x)<-rowpaste[!duplicated(rowpaste)]
         list(yuanshidf=dataread,yuanshidata=dataread1x,objectinfo=dataread2)
@@ -848,9 +849,10 @@ server<-shinyServer(function(input, output, session){
         datamaxqpro3<-datamaxqpro2[!duplicated(datamaxqpro2$`Protein IDs`),]
         datamaxqpro4<-datamaxqpro3[,-c(1,2)]
         dataread2<-datamaxqpro3[,c(1,2)]
-        rowpaste<-apply(dataread2,1,function(x){
-          paste0(x,collapse = "_")
-        })
+        #rowpaste<-apply(dataread2,1,function(x){
+        #  paste0(x,collapse = "_")
+        #})
+        rowpaste<-paste0(dataread2[[1]],"_",dataread2[[2]])
         rownames(datamaxqpro4)<-rowpaste#datamaxqpro3[,1]
         pro0index<-apply(datamaxqpro4,1,function(x) sum(x)==0)
         datamaxqpro5<-datamaxqpro4[!pro0index,]
@@ -873,9 +875,10 @@ server<-shinyServer(function(input, output, session){
         datamaxqpro3<-datamaxqpro2[!duplicated(datamaxqpro2$`Protein IDs`),]
         datamaxqpro4<-as.data.frame(datamaxqpro3[,-c(1,2)])
         dataread2<-datamaxqpro3[,c(1,2)]
-        rowpaste<-apply(dataread2,1,function(x){
-          paste0(x,collapse = "_")
-        })
+        #rowpaste<-apply(dataread2,1,function(x){
+        #  paste0(x,collapse = "_")
+        #})
+        rowpaste<-paste0(dataread2[[1]],"_",dataread2[[2]])
         rownames(datamaxqpro4)<-rowpaste#datamaxqpro3[,1]
         #pro0index<-apply(datamaxqpro4,1,function(x) sum(x)==0)
         datamaxqpro5<-datamaxqpro4#[!pro0index,]
@@ -904,9 +907,10 @@ server<-shinyServer(function(input, output, session){
         datamaxqpro3<-datamaxqpro2[!duplicated(datamaxqpro2$`Protein IDs`),]
         datamaxqpro4<-datamaxqpro3[,-c(1,2)]
         dataread2<-datamaxqpro3[,c(1,2)]
-        rowpaste<-apply(dataread2,1,function(x){
-          paste0(x,collapse = "_")
-        })
+        #rowpaste<-apply(dataread2,1,function(x){
+        #  paste0(x,collapse = "_")
+        #})
+        rowpaste<-paste0(dataread2[[1]],"_",dataread2[[2]])
         rownames(datamaxqpro4)<-rowpaste#datamaxqpro3[,1]
         #pro0index<-apply(datamaxqpro4,1,function(x) sum(x)==0)
         datamaxqpro5<-datamaxqpro4#[!pro0index,]
@@ -916,7 +920,7 @@ server<-shinyServer(function(input, output, session){
   })
   output$peaksdata<-renderDataTable({
     library(data.table)
-    aaxxc<-peaksdataout()
+    aaxxc<<-peaksdataout()
     if(input$loaddatatype==1){
       datatable(peaksdataout()$yuanshidf, options = list(pageLength = 10))
     }else{
