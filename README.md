@@ -1,6 +1,9 @@
 # StatsPro<img src="StatsProhome.png" align="right" height="145" width="145"/>
 StatsPro: systematic integration and evaluation of statistical approaches for detecting differential expression in label-free quantitative proteomics
 
+## Citation
+Yang Y, Cheng J, Wang S, Yang H. StatsPro: Systematic integration and evaluation of statistical approaches for detecting differential expression in label-free quantitative proteomics. J Proteomics. 2021 Sep 30;250:104386. doi: [10.1016/j.jprot.2021.104386](https://doi.org/10.1016/j.jprot.2021.104386).
+
 ## Brief Description
 **<font size='5'> StatsPro </font>** integrates 12 common statistical methods and 6 P-value combination strategies, and then provides three evaluation criteria to assess the performance of each method or strategy (described in Software Manual). This tool is expected to help scientists detect the differentially expressed proteins and realize the ability of different statistical methods in a systematic view. Here we present the detailed introduction and operation of StatsPro, by which users can follow to analyze their own data freely and conveniently. The online version can be accessed from here: [https://www.omicsolution.com/wukong/StatsPro/](https://www.omicsolution.com/wukong/StatsPro/) or [https://www.omicsolution.org/wukong/StatsPro](https://www.omicsolution.org/wukong/StatsPro).
 
