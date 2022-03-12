@@ -135,6 +135,7 @@ ui<-renderUI(
       tabPanel(
         "Welcome",
         uiOutput("welcomeui"),
+        textOutput("jinriusernum"),
         icon = icon("home")
       ),
       tabPanel(
@@ -705,7 +706,7 @@ ui<-renderUI(
 )
 #
 server<-shinyServer(function(input, output, session){
-  options(shiny.maxRequestSize=1000*1024^2)
+  options(shiny.maxRequestSize=100*1024^2)
   usertimenum<-as.numeric(Sys.time())
   #ui
   output$welcomeui<-renderUI({
@@ -1237,11 +1238,11 @@ server<-shinyServer(function(input, output, session){
     namethods<-vector()
     if(input$ttestif) namethods[1]<-"ttest"
     if(input$aovif) namethods[2]<-"aov"
-    if(input$wiltestif) namethods[3]<-"limma"
-    if(input$kwtestif) namethods[4]<-"sam"
-    if(input$permif) namethods[5]<-"wiltest"
-    if(input$limmaif) namethods[6]<-"kwtest"
-    if(input$samif) namethods[7]<-"perm"
+    if(input$limmaif) namethods[3]<-"limma"
+    if(input$samif) namethods[4]<-"sam"
+    if(input$wiltestif) namethods[5]<-"wiltest"
+    if(input$kwtestif) namethods[6]<-"kwtest"
+    if(input$permif) namethods[7]<-"perm"
     if(input$rankproif) namethods[8]<-"rankpro"
     if(input$rotsif) namethods[9]<-"rots"
     if(input$msqrobsumif) namethods[10]<-"msqrobsum"
@@ -1454,15 +1455,19 @@ server<-shinyServer(function(input, output, session){
     classnames<<-classnames
     classnamesnum<<-classnamesnum
     grinfo<<-rep(classnames,times=classnamesnum)
-    cohendd<-apply(statsdatadfx,1,function(x){
-      x1<-cohen.d(as.numeric(x)~grinfo,pooled=FALSE)
-      x1$estimate
-    })
+    if(length(classnames)==2){
+      cohendd<-apply(statsdatadfx,1,function(x){
+        x1<-cohen.d(as.numeric(x)~grinfo,pooled=FALSE)
+        x1$estimate
+      })
+    }else{
+      cohendd<-1
+    }
     withProgress(message = 'Testing data with ', style = "notification", detail = paste0("1 ",namethodsoutx[1]), value = 0,{
       statstestreslist<-list()
       for(i in 1:length(namethodsoutx)){
         statstestreslisti<-statsfunctions(statsdatadfx,classnames=classnames,classnamesnum=classnamesnum,
-                                              method=namethodsoutx[i])
+                                          method=namethodsoutx[i])
         if(length(classnames)==2){
           if(input$logif){
             statstestreslisti$fold.change<-round(rowMeans(statstestreslisti[,(classnamesnum[1]+1):(sum(classnamesnum))])-
@@ -1919,15 +1924,15 @@ server<-shinyServer(function(input, output, session){
         F1Score[i]<-0
       }else{
         F1Score[i]<-sum(datairownames[pvalueresdfx1[[1]]<pyuzhi]%in%ups1data$Accession)*2/(sum(datairownames[pvalueresdfx1[[1]]<pyuzhi]%in%ups1data$Accession)*2+
-                                                                                     sum(!datairownames[pvalueresdfx1[[1]]<pyuzhi]%in%ups1data$Accession)+
-                                                                                     sum(datairownames[pvalueresdfx1[[1]]>=pyuzhi]%in%ups1data$Accession))
+                                                                                             sum(!datairownames[pvalueresdfx1[[1]]<pyuzhi]%in%ups1data$Accession)+
+                                                                                             sum(datairownames[pvalueresdfx1[[1]]>=pyuzhi]%in%ups1data$Accession))
       }
       if(length(datairownames[pvalueresdfx2[[1]]<pyuzhi])==0){
         F1Scoreadj[i]<-0
       }else{
         F1Scoreadj[i]<-sum(datairownames[pvalueresdfx2[[1]]<pyuzhi]%in%ups1data$Accession)*2/(sum(datairownames[pvalueresdfx2[[1]]<pyuzhi]%in%ups1data$Accession)*2+
-                                                                                        sum(!datairownames[pvalueresdfx2[[1]]<pyuzhi]%in%ups1data$Accession)+
-                                                                                        sum(datairownames[pvalueresdfx2[[1]]>=pyuzhi]%in%ups1data$Accession))
+                                                                                                sum(!datairownames[pvalueresdfx2[[1]]<pyuzhi]%in%ups1data$Accession)+
+                                                                                                sum(datairownames[pvalueresdfx2[[1]]>=pyuzhi]%in%ups1data$Accession))
       }
       set.seed(1234)
       pvalueresdfx1[pvalueresdfx1==0]<-sample(seq(.0000001,0.001,length.out = 2*length(pvalueresdfx1[pvalueresdfx1==0])),
