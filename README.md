@@ -55,3 +55,11 @@ Enjoy yourself^_^
 ## Contact
 You could push an issue on this github. And optionally, please feel free to sent me an e-mail if you have any question or find a bug about this tool. Thank you^_^
 Email: shishengwang@wchscu.cn.
+
+## My R Info
+```r
+> sessionInfo()
+R version 4.1.3 (2022-03-10)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 10 x64 (build 19044)
+```
