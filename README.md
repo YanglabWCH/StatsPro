@@ -24,16 +24,17 @@ This tool is developed with R, so if you want to run it locally, you may do some
 
 ```r
 if(!require(pacman)) install.packages("pacman")
-pacman::p_load(shiny, shinyjs, shinyBS, rlang, htmltools, shinyWidgets, gdata, ggplot2, ggsci, DT, tidyverse, ggExtra, cowplot, readxl, writexl, data.table, Amelia, impute, coin, exactRankTests, genefilter, geneplotter, limma, samr, RankProd, ROTS, MSnbase, DEqMS, plgem, effsize, patchwork, parallelly, listenv, globals, future, future.apply, survcomp, EDASeq, NOISeq, baySeq, NBPSeq, log4r)
+if(!require(BiocManager)) install.packages('BiocManager')
+pacman::p_load(devtools, shiny, shinyjs, shinyBS, rlang, htmltools, shinyWidgets, gdata, gplots, ggplot2, ggsci, DT, tidyverse, ggExtra, cowplot, readxl, writexl, data.table, Amelia, impute, coin, exactRankTests, genefilter, geneplotter, qvalue, limma, samr, RankProd, ROTS, MSnbase, DEqMS, plgem, effsize, patchwork, parallelly, listenv, globals, future, future.apply, survcomp, EDASeq, NOISeq, baySeq, NBPSeq, log4r, raster, corrplot)
 install.packages("https://www.bioconductor.org/packages//2.10/bioc/src/contrib/DESeq_1.8.3.tar.gz", repos = NULL, type = "source")
 devtools::install_github("statOmics/MSqRobSum")
-pacman::p_load(metaseqR)
+install.packages("https://www.bioconductor.org/packages/3.9/bioc/src/contrib/metaseqR_1.24.0.tar.gz", repos = NULL, type = "source")
+devtools::install_github("YanglabWCH/StatsPro")
 ```
 
 ## Run it locally
 If the preparatory work has been done, you can run this tool locally as below:
 ```r
-if(!require(StatsPro)) devtools::install_github("YanglabWCH/StatsPro")
 library(StatsPro)
 StatsPro_app()
 ```
@@ -53,4 +54,4 @@ Enjoy yourself^_^
 
 ## Contact
 You could push an issue on this github. And optionally, please feel free to sent me an e-mail if you have any question or find a bug about this tool. Thank you^_^
-Email: wsslearning@omicsolution.com.
+Email: shishengwang@wchscu.cn.
